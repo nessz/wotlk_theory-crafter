@@ -1,0 +1,2 @@
+cp item_builds/2017_01_08_current_gear__Int.xex item_builds/2017_01_08_current_gear__Int__TEST.xex
+python Main.py item_builds/2017_01_08_current_gear__Int__TEST.xex
