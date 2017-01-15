@@ -23,6 +23,12 @@ class ItemRack:
 		"offhand": None
 		}
 
+		# for the sake of completeness those are defined here, their values are set in UpdateStats
+		# note that itemsStats are pure stats collected from items (no gems, no enchants)
+		# --> following from that gemsStats collects only stats from gems
+		self._itemsStats = None
+		self._gemsStats = None
+
 	def Set(self, key, value):
 		if key not in self._rack:
 			print "'", key, "'  not in ItemRack"
@@ -38,6 +44,9 @@ class ItemRack:
 		return self._rack[key]
 
 	def UpdateStats(self):
+		# iterating through all relevant items in the ItemRack and summing up their stats
+		# note that gems are a special case, since they are they only stat which is a list
+		# --> from that follows that "summing up" will lead to a list with all gems 
 		item = Item()
 		for key in self._rack:
 			for key_ in self._rack[key].Stats():
@@ -46,7 +55,7 @@ class ItemRack:
 
 				item.Set(key_, item.Get(key_) + self._rack[key].Get(key_))
 
-
+		# iterating over all gems in the gear and summing up their stats
 		itemGems = Item()
 		for g in item.Get("gems"):
 			for key_ in g.Stats():

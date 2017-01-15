@@ -36,7 +36,8 @@ class Paladin:
 
 
 	def UpdateTotalIntellect(self):
-		self._totalIntellect = (self._baseIntellect + self._int_FromItems + self._int_FromGems + self._int_FromEnchants) * (1 + self._divineIntellect)
+		self._totalIntellect = (self._baseIntellect + self._int_FromItems \
+							+ self._int_FromGems + self._int_FromEnchants) * (1 + self._divineIntellect)
 		#self._totalIntellect = self._totalIntellect * 1.1 		# Kings
 
 	def UpdateTotalMana(self):
@@ -45,11 +46,13 @@ class Paladin:
 
 	def UpdateTotalCrit(self):
 		# formula from WowWiki
-		self._totalCrit = (self._totalIntellect / 80.05) + self._baseCrit + ((self._critRating_FromItems + self._critRating_FromGems) / 22.08)
+		self._totalCrit = (self._totalIntellect / 80.05) + self._baseCrit + \
+						((self._critRating_FromItems + self._critRating_FromGems) / 22.08)
 		self._totalCritGems = (self._critRating_FromGems / 22.08)
 
 	def UpdateHealingBonus(self):
-		self._hbTotal = self._hb_FromItems + self._hb_FromGems + self._hb_FromEnchants + (self._totalIntellect * self._divineGuidance)
+		self._hbTotal = self._hb_FromItems + self._hb_FromGems + self._hb_FromEnchants \
+					+ (self._totalIntellect * self._divineGuidance)
 
 
 	def ManaFromInt(self):

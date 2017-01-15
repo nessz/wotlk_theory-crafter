@@ -54,9 +54,10 @@ def LoadItems(filename):
 	with open(filename, "r") as f:
 		content = f.readlines()
 
-		# iterate each line
+		# iterate each line of the input file
 		for c in content:
-			line = c.split()		# per default split() splits on whitepaces, tabs, ...
+			# per default split() splits on whitepaces, tabs, ...
+			line = c.split()
 
 			slot = line[0]
 			itemId = line[1]
@@ -69,8 +70,7 @@ def LoadItems(filename):
 
 			r.Set(slot, GetItem(itemId))
 			if gems:
-				for g in gems:
-					r.Rack(slot).Set("gems", gems)
+				r.Rack(slot).Set("gems", gems)
 
 	return r
 
