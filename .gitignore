@@ -1,0 +1,3 @@
+*.pyc
+item_builds/*.xex
+item_builds/*.xex*

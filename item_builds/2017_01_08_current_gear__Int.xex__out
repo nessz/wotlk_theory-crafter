@@ -1,0 +1,82 @@
+__Given_ItemRack__
+trinket2    Pendant of the Violet Eye; 
+head        Lightbringer Greathelm; Brilliant Lionseye
+legs        Lightbringer Leggings; Brilliant Lionseye
+neck        Guardian's Pendant of Reprieve; Brilliant Lionseye
+trinket1    Memento of Tyrande; 
+offhand     Felstone Bulwark; 
+weapon      Crystal Spire of Karabor; 
+shoulders   Lightbringer Pauldrons; Brilliant Lionseye, Royal Shadowsong Amethyst
+boots       Treads of the Life Path; Brilliant Lionseye, Royal Shadowsong Amethyst
+back        Shroud of the Highborne; 
+chest       Sun-Drenched Scale Chestguard; Brilliant Lionseye, Brilliant Lionseye, Brilliant Lionseye
+ring2       Blessed Band of Karabor; 
+gloves      Sunblessed Gauntlets; Brilliant Lionseye, Brilliant Lionseye
+ring1       Blessed Band of Karabor; 
+belt        Lightbringer Belt; Kailee's Rose
+bracers     Lightbringer Bracers; Brilliant Lionseye
+
+__Items_Stats__
+Name   ~
+Id     ~
+Slot   ~
+Int    425
+Crit   183
+Hb     1719
+Haste  182
+Mp5    83
+Y      4
+R      6
+B      4
+Gems   14
+
+__Gems_Stats__
+Name   ~
+Id     ~
+Slot   ~
+Int    110
+Crit   0
+Hb     48
+Haste  0
+Mp5    4
+Y      0
+R      0
+B      0
+Gems   0
+
+__TOTAL__
+Healing Bonus         2338.02
+Base Int              87
+Base Mana             2953
+Total Int             717.2
+Total Mana            13431.0
+Crit Rating           183
+Total Crit            20.583443853
+Mp5                   98
+Haste                 182
+
+__GEMS__
+Gems Healing Bonus    48
+Gems Crit Rating      0
+Gems Crit             0.0
+Gems Mp5              4
+Gems Haste            0
+Gems Intellect        110
+Gems Mana from Int    1535.0
+Gems Crit from Int    1.51155527795
+Gems HB from Int      42.35
+Gems Total Crit       1.51155527795
+Gems Total HB         90.35
+
+__INT__
+Mana from Total Int   10478.0
+Crit from Total Int   8.95940037477
+HB from Total Int     251.02
+
+
+Note:
+- Socket Boni are NOT considered!
+- Enchants are considered (your Rings are enchanted).
+- You have Insightful Earthstorm Diamond (+12 Int).
+- You are wearing a shield (+10 Int).
+- You are Aldor (shoulder enchant).
