@@ -1,16 +1,16 @@
-head 30988 32204 					# t6 int gem
-neck 37929 32204 					# s4 
-shoulders 30996 32204 32216			# t6 int gem, bh mp5
-back 32524							# illidan cloak
-chest 34375 32204 32204 32204		# lw mail chest, int gems
-bracers 34432 32204					# t6 bracers, int gem
-gloves 34380 32204 32204			# bs plate gloves, int gems
-belt 34487 33134					# t6 special bh gem
-legs 30994 32204					# t6 int gem
-boots 33324 32204 32216				# mail badge boots int gem, bh mp5
-ring1 32528							# bt trash
-ring2 32528							# bt trash
-trinket1 32496						# memento
-trinket2 28727						# kara eye int
-weapon 32500						# karabor
-offhand 32255						# supremus shield
+head 30988 32204                    # t6 int gem
+neck 37929 32204                    # s4 
+shoulders 30996 32204 32216         # t6 int gem, bh mp5
+back 32524                          # illidan cloak
+chest 34375 32204 32204 32204       # lw mail chest, int gems
+bracers 34432 32204                 # t6 bracers, int gem
+gloves 34380 32204 32204            # bs plate gloves, int gems
+belt 34487 33134                    # t6 special bh gem
+legs 30994 32204                    # t6 int gem
+boots 33324 32204 32216             # mail badge boots int gem, bh mp5
+ring1 32528                         # bt trash
+ring2 32528                         # bt trash
+trinket1 32496                      # memento
+trinket2 28727                      # kara eye int
+weapon 32500                        # karabor
+offhand 32255                       # supremus shield
