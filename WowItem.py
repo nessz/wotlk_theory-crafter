@@ -6,7 +6,6 @@ class Item:
 
 	# parsing might not work for other sites than http://wow-one.com/database/ at the moment
 	def __init__(self, Id = -1, response = ""):
-
 		self._stats = {
 		"id": 0,
 		"name": 0,
