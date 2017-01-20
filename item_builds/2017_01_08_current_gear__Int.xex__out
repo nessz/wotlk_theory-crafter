@@ -1,20 +1,20 @@
 __Given_ItemRack__
-trinket2    Pendant of the Violet Eye; 
 head        Lightbringer Greathelm; Brilliant Lionseye
-legs        Lightbringer Leggings; Brilliant Lionseye
 neck        Guardian's Pendant of Reprieve; Brilliant Lionseye
-trinket1    Memento of Tyrande; 
-offhand     Felstone Bulwark; 
-weapon      Crystal Spire of Karabor; 
 shoulders   Lightbringer Pauldrons; Brilliant Lionseye, Royal Shadowsong Amethyst
-boots       Treads of the Life Path; Brilliant Lionseye, Royal Shadowsong Amethyst
 back        Shroud of the Highborne; 
 chest       Sun-Drenched Scale Chestguard; Brilliant Lionseye, Brilliant Lionseye, Brilliant Lionseye
-ring2       Blessed Band of Karabor; 
-gloves      Sunblessed Gauntlets; Brilliant Lionseye, Brilliant Lionseye
-ring1       Blessed Band of Karabor; 
-belt        Lightbringer Belt; Kailee's Rose
 bracers     Lightbringer Bracers; Brilliant Lionseye
+gloves      Sunblessed Gauntlets; Brilliant Lionseye, Brilliant Lionseye
+belt        Lightbringer Belt; Kailee's Rose
+legs        Lightbringer Leggings; Brilliant Lionseye
+boots       Treads of the Life Path; Brilliant Lionseye, Royal Shadowsong Amethyst
+ring1       Blessed Band of Karabor; 
+ring2       Blessed Band of Karabor; 
+trinket1    Memento of Tyrande; 
+trinket2    Pendant of the Violet Eye; 
+weapon      Crystal Spire of Karabor; 
+offhand     Felstone Bulwark; 
 
 __Items_Stats__
 Name   ~

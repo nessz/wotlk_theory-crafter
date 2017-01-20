@@ -1,6 +1,6 @@
 import requests
+import Specs
 from WowItem import Item
-from Character import Paladin
 from ItemRack import ItemRack
 
 website_database_url = "http://wow-one.com/database/?item=";
@@ -59,8 +59,14 @@ def LoadItems(filename):
 			# per default split() splits on whitepaces, tabs, ...
 			line = c.split()
 
+			# early out if it is a comment
+			if line[0] == "#" or line[1] == "#" or line[0] == "class":
+				continue
+
 			slot = line[0]
 			itemId = line[1]
+			r.Set(slot, GetItem(itemId))
+
 			gems = []
 			for i in range(2, len(line)):
 				# "#" marks the start of a comment, we are not interested in the rest of the line
@@ -68,7 +74,6 @@ def LoadItems(filename):
 					break
 				gems.append(GetItem(line[i]))
 
-			r.Set(slot, GetItem(itemId))
 			if gems:
 				r.Rack(slot).Set("gems", gems)
 

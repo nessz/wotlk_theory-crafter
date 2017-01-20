@@ -1,6 +1,9 @@
-import ManageItems
-from Character import Paladin
 import sys
+sys.path.append("Specs")
+
+import ManageItems
+import Specs
+
 
 def main():
 
@@ -25,7 +28,7 @@ def main():
 	f_o.write("__Gems_Stats__" + "\n")
 	f_o.write(gems_stats.ToString() + "\n\n")
 
-	c = Paladin()	
+	c = Specs.GetClassSpec(item_rack_file)()
 	c.UpdateStatsFromItems(
 		items_stats.Get("hb"), 
 		items_stats.Get("intellect"), 

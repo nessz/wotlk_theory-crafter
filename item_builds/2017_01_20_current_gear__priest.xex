@@ -1,0 +1,18 @@
+class PriestHoly
+head 31063 37503                    # t6 bh+spirit
+neck 32370                          # mother neck
+shoulders 31069 32201 32201         # t6 spirit
+back 32524                          # illidan cloak
+chest 34365 32201 32201 32201       # tailoring chest, spirit
+bracers 32584                       # tailoring bracers
+gloves 34367 37503 32204            # tailoring gloves, bh+spirit spirit
+belt 30895                          # kazrogal belt
+legs 34925 35761 35761              # badge legs, haste
+boots 32609 35761 32201             # bt trash boots, spirit haste
+ring1 32528                         # bt trash
+ring2 32528                         # bt trash
+trinket1 32496                      # memento
+trinket2 30665                      # earring
+weapon 32500                        # karabor
+offhand 30911                       # archimonde cepter
+ranged 34348 37503                  # swp trash wand

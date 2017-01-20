@@ -1,5 +1,5 @@
 
-class Holadin:
+class PaladinHoly:
 
 	def __init__(self):
 		self._baseIntellect = 87 #+ 65   # 65 distilled wisdom

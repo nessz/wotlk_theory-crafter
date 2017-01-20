@@ -1,27 +1,30 @@
 from WowItem import Item
+from collections import OrderedDict
 
 
 class ItemRack:
 
 	def __init__(self):
-		self._rack = {
-		"head": None,
-		"neck": None,
-		"shoulders": None,
-		"back": None,
-		"chest": None,
-		"bracers": None,
-		"gloves": None,
-		"belt": None,
-		"legs": None,
-		"boots": None,
-		"ring1": None,
-		"ring2": None,
-		"trinket1": None,
-		"trinket2": None,
-		"weapon": None,
-		"offhand": None
-		}
+		# using OrderedDict, because we want the iteration order to stay the same (nicer logs)
+		self._rack = OrderedDict([
+		("head", None),
+		("neck", None),
+		("shoulders", None),
+		("back", None),
+		("chest", None),
+		("bracers", None),
+		("gloves", None),
+		("belt", None),
+		("legs", None),
+		("boots", None),
+		("ring1", None),
+		("ring2", None),
+		("trinket1", None),
+		("trinket2", None),
+		("weapon", None),
+		("offhand", None),
+		("ranged", None),
+		])
 
 		# for the sake of completeness those are defined here, their values are set in UpdateStats
 		# note that itemsStats are pure stats collected from items (no gems, no enchants)
@@ -31,14 +34,14 @@ class ItemRack:
 
 	def Set(self, key, value):
 		if key not in self._rack:
-			print "'", key, "'  not in ItemRack"
+			print "'", key, "'  not in ItemRack (ItemRack.Set)"
 			return
 
 		self._rack[key] = value
 
 	def Rack(self, key):
 		if key not in self._rack:
-			print "'", key, "'  not in ItemRack"
+			print "'", key, "'  not in ItemRack (ItemRack.Rack)"
 			return -1
 
 		return self._rack[key]
@@ -49,6 +52,9 @@ class ItemRack:
 		# --> from that follows that "summing up" will lead to a list with all gems 
 		item = Item()
 		for key in self._rack:
+			if self._rack[key] is None:
+				continue
+
 			for key_ in self._rack[key].Stats():
 				if key_ == "name" or key_ == "slot" or key_ == "id":
 					continue
@@ -78,7 +84,8 @@ class ItemRack:
 	def ContainedItems(self):
 		string = "__Given_ItemRack__\n"
 		for key in self._rack:
-			string += "{:<12}".format(key) + self._rack[key].GetName() + "; " + ', '.join(str(e.GetName()) for e in self._rack[key].Get("gems")) + "\n"
+			if self._rack[key] is not None:
+				string += "{:<12}".format(key) + self._rack[key].GetName() + "; " + ', '.join(str(e.GetName()) for e in self._rack[key].Get("gems")) + "\n"
 
 		return string	
 
