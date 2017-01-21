@@ -97,6 +97,11 @@ class Item:
 		if tmp:
 			self._stats["intellect"] = int(regex_digits.search(str(tmp.group())).group())
 
+		# spirit
+		tmp = re.search("\+\d+ Spirit", response.text)
+		if tmp:
+			self._stats["spirit"] = int(regex_digits.search(str(tmp.group())).group())
+
 		# spell crit
 		tmp = re.search("Equip: Spell critical strike rating \+ \d+", response.text)
 		if tmp:
@@ -179,6 +184,8 @@ class Item:
 		return self._stats
 
 	def ToString(self):
+		# TODO introduce blacklist for skipping useless stats in logs
+
 		string = ""
 		for key in self._stats:
 			if key == "gems":
