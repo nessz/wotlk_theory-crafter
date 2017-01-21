@@ -1,25 +1,28 @@
 from bs4 import BeautifulSoup
 import re
+from collections import OrderedDict
 
 
 class Item:
 
 	# parsing might not work for other sites than http://wow-one.com/database/ at the moment
 	def __init__(self, Id = -1, response = ""):
-		self._stats = {
-		"id": 0,
-		"name": 0,
-		"slot": 0,
-		"intellect": 0,
-		"crit": 0,
-		"hb": 0,
-		"haste": 0,
-		"mp5": 0,
-		"yellow": 0,
-		"red": 0,
-		"blue": 0,
-		"gems": []
-		}
+		# using OrderedDict, because we want the iteration order to stay the same (nicer logs)
+		self._stats = OrderedDict([
+		("id", 0),
+		("name", 0),
+		("slot", 0),
+		("intellect", 0),
+		("spirit", 0),
+		("crit", 0),
+		("hb", 0),
+		("haste", 0),
+		("mp5", 0),
+		("yellow", 0),
+		("red", 0),
+		("blue", 0),
+		("gems", []),
+		])
 
 		if Id == -1 and response == "":
 			self._stats["id"] = "~"
@@ -54,6 +57,11 @@ class Item:
 			tmp = re.search("\+\d+ Intellect", response.text)
 			if tmp:
 				self._stats["intellect"] = int(regex_digits.search(str(tmp.group())).group())
+
+			# spirit
+			tmp = re.search("\+\d+ Spirit", response.text)
+			if tmp:
+				self._stats["spirit"] = int(regex_digits.search(str(tmp.group())).group())
 
 			# healing bonus
 			tmp = re.search("\+\d+ Healing", response.text)
@@ -171,17 +179,11 @@ class Item:
 		return self._stats
 
 	def ToString(self):
-		string =  "Name   " + str(self._stats["name"]) + "\n"
-		string += "Id     " + str(self._stats["id"]) + "\n"
-		string += "Slot   " + str(self._stats["slot"]) + "\n"
-		string += "Int    " + str(self._stats["intellect"]) + "\n"
-		string += "Crit   " + str(self._stats["crit"]) + "\n"
-		string += "Hb     " + str(self._stats["hb"]) + "\n"
-		string += "Haste  " + str(self._stats["haste"]) + "\n"
-		string += "Mp5    " + str(self._stats["mp5"]) + "\n"
-		string += "Y      " + str(self._stats["yellow"]) + "\n"
-		string += "R      " + str(self._stats["red"]) + "\n"
-		string += "B      " + str(self._stats["blue"]) + "\n"
-		string += "Gems   " + str(len(self._stats["gems"])) #'  '.join(str(e.GetName()) for e in self._stats["gems"])
+		string = ""
+		for key in self._stats:
+			if key == "gems":
+				string += "{:<12}".format(key) + str(len(self._stats["gems"])) + "\n"
+			else:
+				string += "{:<12}".format(key) + str(self._stats[key]) + "\n"
 
 		return string
