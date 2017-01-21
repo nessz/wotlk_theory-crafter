@@ -16,6 +16,6 @@ def GetClassSpec(filename):
 		line = content[0].split()
 
 		if line[0] != "class":
-			print "File now well defined. (Specs.GetClassSpec)"
+			print "File not well defined. (Specs.GetClassSpec)"
 
 		return ClassSpec[line[1]]
