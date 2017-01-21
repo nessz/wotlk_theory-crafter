@@ -51,24 +51,27 @@ class ItemRack:
 		# note that gems are a special case, since they are they only stat which is a list
 		# --> from that follows that "summing up" will lead to a list with all gems 
 		item = Item()
-		for key in self._rack:
-			if self._rack[key] is None:
+		for key_slot in self._rack:
+			if self._rack[key_slot] is None:
 				continue
 
-			for key_ in self._rack[key].Stats():
-				if key_ == "name" or key_ == "slot" or key_ == "id":
+			for key_stat in self._rack[key_slot].ItemStatDict():
+				if key_stat == "name" or key_stat == "slot" or key_stat == "id":
 					continue
 
-				item.Set(key_, item.Get(key_) + self._rack[key].Get(key_))
+				if key_stat == "s_bonus" and not self._rack[key_slot].IsSocketBonusActive():
+					continue
+
+				item.Set(key_stat, item.Get(key_stat) + self._rack[key_slot].Get(key_stat))
 
 		# iterating over all gems in the gear and summing up their stats
 		itemGems = Item()
 		for g in item.Get("gems"):
-			for key_ in g.Stats():
-				if key_ == "name" or key_ == "slot" or key_ == "id":
+			for key_stat in g.ItemStatDict():
+				if key_stat == "name" or key_stat == "slot" or key_stat == "id" or key_stat == "s_bonus":
 					continue
 
-				itemGems.Set(key_, itemGems.Get(key_) + g.Get(key_))
+				itemGems.Set(key_stat, itemGems.Get(key_stat) + g.Get(key_stat))
 
 		self._itemsStats = item
 		self._gemsStats = itemGems
@@ -86,6 +89,7 @@ class ItemRack:
 		for key in self._rack:
 			if self._rack[key] is not None:
 				string += "{:<12}".format(key) + self._rack[key].GetName() + "; " + ', '.join(str(e.GetName()) for e in self._rack[key].Get("gems")) + "\n"
+				#string += self._rack[key].ToString()
 
 		return string	
 
