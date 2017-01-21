@@ -1,5 +1,5 @@
 import sys
-sys.path.append("Specs")
+sys.path.append("ClassSpecs")
 
 import ManageItems
 import ClassSpecs

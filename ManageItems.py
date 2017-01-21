@@ -1,5 +1,4 @@
 import requests
-import ClassSpecs
 from WowItem import Item
 from ItemRack import ItemRack
 

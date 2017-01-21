@@ -1,6 +1,6 @@
 
-#cp item_builds/2017_01_08_current_gear__Int.xex item_builds/2017_01_08_current_gear__Int__TEST.xex
-#python Main.py item_builds/2017_01_08_current_gear__Int__TEST.xex
+#cp ItemBuilds/2017_01_08_current_gear__Int.xex ItemBuilds/2017_01_08_current_gear__Int__TEST.xex
+#python Main.py ItemBuilds/2017_01_08_current_gear__Int__TEST.xex
 
-cp item_builds/2017_01_20_current_gear__priest.xex item_builds/2017_01_20_current_gear__priest__TEST.xex
-python Main.py item_builds/2017_01_20_current_gear__priest__TEST.xex
+cp ItemBuilds/2017_01_20_current_gear__priest.xex ItemBuilds/2017_01_20_current_gear__priest__TEST.xex
+python Main.py ItemBuilds/2017_01_20_current_gear__priest__TEST.xex
