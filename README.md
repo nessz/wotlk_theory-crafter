@@ -14,7 +14,7 @@ pip install lxml
 
 #### Startup
 
-After installing the above packages you can simple type something like `python Main.py item_builds/2017_01_08_current_gear__Int.xex` to start the program. 
+After installing the above packages you can simple type something like `python Main.py ItemBuilds/2017_01_08_current_gear__Int.xex` to start the program. 
 
 #### Info and tips
 
