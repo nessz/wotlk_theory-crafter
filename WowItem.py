@@ -14,7 +14,7 @@ class Item:
 		("slot", 0),
 		("intellect", 0),
 		("spirit", 0),
-		("crit", 0),
+		("spellcrit", 0),
 		("hb", 0),
 		("haste", 0),
 		("mp5", 0),
@@ -29,7 +29,7 @@ class Item:
 		if Id == -1 and response == "":
 			self._stats["id"] = "~"
 			self._stats["name"] = "~"
-			self._stats["slot"] = "~"			
+			self._stats["slot"] = "~"
 			return
 
 		# socket bonus items
@@ -92,7 +92,7 @@ class Item:
 		# spell crit
 		tmp = re.search("\+\d+ Spell Critical Rating", text)
 		if tmp:
-			self._stats["crit"] = int(regex_digits.search(str(tmp.group())).group())
+			self._stats["spellcrit"] = int(regex_digits.search(str(tmp.group())).group())
 
 		# haste
 		tmp = re.search("\+\d+ Spell Haste Rating", text)
@@ -123,7 +123,7 @@ class Item:
 		# spell crit
 		tmp = re.search("Equip: Spell critical strike rating \+ \d+", text)
 		if tmp:
-			self._stats["crit"] = int(regex_digits.search(str(tmp.group())).group())
+			self._stats["spellcrit"] = int(regex_digits.search(str(tmp.group())).group())
 
 		# healing bonus
 		tmp = re.search("Increases healing done by up to \d+", text)

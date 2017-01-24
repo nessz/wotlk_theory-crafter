@@ -46,7 +46,7 @@ class ItemRack:
 
 		return self._rack[key]
 
-	def UpdateStats(self):
+	def SumStats(self):
 		# iterating through all relevant items in the ItemRack and summing up their stats
 		# note that gems are a special case, since they are they only stat which is a list
 		# --> from that follows that "summing up" will lead to a list with all gems 
@@ -77,11 +77,11 @@ class ItemRack:
 		self._gemsStats = itemGems
 
 	def ItemsStats(self):
-		self.UpdateStats()
+		self.SumStats()
 		return self._itemsStats
 
 	def GemsStats(self):
-		self.UpdateStats()
+		self.SumStats()
 		return self._gemsStats
 
 	def ContainedItems(self):

@@ -3,6 +3,7 @@ sys.path.append("ClassSpecs")
 
 import ManageItems
 import ClassSpecs
+#from PaladinHoly import PaladinHoly
 
 
 def main():
@@ -29,18 +30,26 @@ def main():
 	f_o.write(gems_stats.ToString() + "\n\n")
 
 	c = ClassSpecs.GetClassSpec(item_rack_file)()
+	#c = PaladinHoly()
+	
+	'''
 	c.UpdateStatsFromItems(
 		items_stats.Get("hb"), 
 		items_stats.Get("intellect"), 
-		items_stats.Get("crit"), 
+		items_stats.Get("spellcrit"), 
 		items_stats.Get("mp5"), 
 		items_stats.Get("haste"))
 	c.UpdateStatsFromGems(
 		gems_stats.Get("hb"), 
 		gems_stats.Get("intellect"), 
-		gems_stats.Get("crit"), 
+		gems_stats.Get("spellcrit"), 
 		gems_stats.Get("mp5"), 
 		gems_stats.Get("haste"))
+	'''
+	c.SetItemStats(items_stats)
+	c.SetGemStats(gems_stats)
+	c.UpdateTotalStats()
+
 	f_o.write(c.ToString() + "\n")
 
 	f_o.close()
