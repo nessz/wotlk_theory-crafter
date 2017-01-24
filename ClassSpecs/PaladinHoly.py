@@ -6,9 +6,10 @@ class PaladinHoly(Character):
 
 	def __init__(self):
 		Character.__init__(self)
-		self._baseStats["intellect"] = 87
+		self._baseStats["intellect"] = 87.0
 		self._baseStats["spellcrit"] = 3.336
 		self._baseStats["intToSpellcrit"] = 80.05
+		self._baseStats["mana"] = 2953
 
 		self._divineIntellect = 0.1		# improves intellect by 10%
 		self._divineGuidance = 0.35		# improves healing bonus by 35% of intellect
@@ -44,12 +45,6 @@ class PaladinHoly(Character):
 		self.UpdateTotalMana()
 		self.UpdateTotalSpellCrit()
 
-
-	def ManaFromInt(self):
-		return (20 + (15 * (self._totalStats.Get("intellect") - 20)))
-
-	def SpellCritFromInt(self):
-		return (self._totalStats.Get("intellect") / self._baseStats["intToSpellcrit"])
 
 	def HealingBonusFromInt(self):
 		return (self._totalStats.Get("intellect") * self._divineGuidance)
@@ -94,6 +89,11 @@ class PaladinHoly(Character):
 		string += "{:<30}".format("Crit from Total Int") 	+ str(self.SpellCritFromInt()) + "\n"
 		string += "{:<30}".format("HB from Total Int") 		+ str(self.HealingBonusFromInt()) + "\n\n"
 
-		string += "\nNote:\n- Socket Boni are NOT considered!\n- Enchants are considered (your Rings are enchanted).\n- You have Insightful Earthstorm Diamond (+12 Int).\n- You are wearing a shield (+10 Int).\n- You are Aldor (shoulder enchant)."
+		string += "\nNote:														\
+					\n- Socket Boni are NOT considered!							\
+					\n- Enchants are considered (your Rings are enchanted).		\
+					\n- You have Insightful Earthstorm Diamond (+12 Int).		\
+					\n- You are wearing a shield (+10 Int).						\
+					\n- You are Aldor (shoulder enchant)."
 
 		return string

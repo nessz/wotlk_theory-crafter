@@ -1,13 +1,15 @@
 from collections import OrderedDict
 from WowItem import Item
+import math
 
 
 class Character:
 
 	def __init__(self):
 		# base stats are taken from a lvl 70 character
+		# or look those stats up from wowwiki
 		self._baseStats = OrderedDict([		
-		("mana",                        2953),
+		("mana",                        0),
 		("spellcrit",                   0),
 		("intellect",                   0),
 		("spirit",                      0),
@@ -20,7 +22,7 @@ class Character:
 		self._enchantStats = Item()		# stats gained from enchants
 
 		self._totalStats = Item()
-		self._totalStats.ItemStatDict().update({"mana": 0})		# adding mana as stat
+		self._totalStats.ItemStatDict().update({"mana": 0})					# adding mana as stat
 
 
 	def UpdateTotalStat(self, key):
@@ -89,6 +91,9 @@ class Character:
 		'''
 
 
+	#--------------------------------------------------------------------------
+	# getter and setter
+
 	def Get(self, key):
 		if key not in self._baseStats:
 			print "'", key, "'  not in Character (Character.Get)"
@@ -111,3 +116,13 @@ class Character:
 
 	def SetEnchantStats(self, stats):
 		self._enchantStats = stats
+
+
+	#--------------------------------------------------------------------------
+	# following functions break down some data, interesting for some classes
+
+	def ManaFromInt(self):
+		return (20 + (15 * (self._totalStats.Get("intellect") - 20)))
+
+	def SpellCritFromInt(self):
+		return (self._totalStats.Get("intellect") / self._baseStats["intToSpellcrit"])

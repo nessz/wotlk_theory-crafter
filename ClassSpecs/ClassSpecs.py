@@ -1,11 +1,11 @@
 # centralised imports for all specs
 
 from PaladinHoly import PaladinHoly
-# from PriestHoly import PriestHoly
+from PriestHoly import PriestHoly
 
 
 ClassSpec = {
-	"PriestHoly": PaladinHoly,
+	"PriestHoly": PriestHoly,
 	"PaladinHoly": PaladinHoly,
 }
 
