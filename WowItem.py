@@ -14,6 +14,7 @@ class Item:
 		("slot", 0),
 		("intellect", 0),
 		("spirit", 0),
+		("spellcritRating", 0),
 		("spellcrit", 0),
 		("hb", 0),
 		("haste", 0),
@@ -92,7 +93,7 @@ class Item:
 		# spell crit
 		tmp = re.search("\+\d+ Spell Critical Rating", text)
 		if tmp:
-			self._stats["spellcrit"] = int(regex_digits.search(str(tmp.group())).group())
+			self._stats["spellcritRating"] = int(regex_digits.search(str(tmp.group())).group())
 
 		# haste
 		tmp = re.search("\+\d+ Spell Haste Rating", text)
@@ -123,7 +124,7 @@ class Item:
 		# spell crit
 		tmp = re.search("Equip: Spell critical strike rating \+ \d+", text)
 		if tmp:
-			self._stats["spellcrit"] = int(regex_digits.search(str(tmp.group())).group())
+			self._stats["spellcritRating"] = int(regex_digits.search(str(tmp.group())).group())
 
 		# healing bonus
 		tmp = re.search("Increases healing done by up to \d+", text)
@@ -197,11 +198,14 @@ class Item:
 
 		string = ""
 		for key in self._stats:
+			if key == "spellcrit":
+				continue;
+
 			if key == "gems":
-				string += "{:<12}".format(key) + str(len(self._stats["gems"])) + "\n"
+				string += "{:<30}".format(key) + str(len(self._stats["gems"])) + "\n"
 			elif key == "s_bonus" and self._stats["s_bonus"]:
-				string += "{:<12}".format(key) + "\n" + self._stats["s_bonus"].ToString()
+				string += "{:<30}".format(key) + "\n" + self._stats["s_bonus"].ToString()
 			else:
-				string += "{:<12}".format(key) + str(self._stats[key]) + "\n"
+				string += "{:<30}".format(key) + str(self._stats[key]) + "\n"
 
 		return string

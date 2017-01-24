@@ -88,7 +88,7 @@ class ItemRack:
 		string = "__Given_ItemRack__\n"
 		for key in self._rack:
 			if self._rack[key] is not None:
-				string += "{:<12}".format(key) + self._rack[key].GetName() + "; " + ', '.join(str(e.GetName()) for e in self._rack[key].Get("gems")) + "\n"
+				string += "{:<30}".format(key) + self._rack[key].GetName() + "; " + ', '.join(str(e.GetName()) for e in self._rack[key].Get("gems")) + "\n"
 				#string += self._rack[key].ToString()
 
 		return string	

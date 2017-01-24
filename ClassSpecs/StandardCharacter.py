@@ -22,6 +22,7 @@ class Character:
 		self._totalStats = Item()
 		self._totalStats.ItemStatDict().update({"mana": 0})		# adding mana as stat
 
+
 	def UpdateTotalStat(self, key):
 		if key not in self._itemStats.ItemStatDict() or 						\
 			key not in self._totalStats.ItemStatDict():
@@ -71,18 +72,22 @@ class Character:
 			print "intToSpellcrit has to be non-zero (Character.UpdateTotalSpellCrit)"
 
 		# should update intellect before calling this
-		key = "spellcrit"
-		self.UpdateTotalStat(key)
-		self._totalStats.Set(key,
-			(self._totalStats.Get("intellect") / self._baseStats["intToSpellcrit"]) +	\
-			self._baseStats[key] + 														\
-			(self._totalStats.Get(key) / self._baseStats["spellcritRatingToSpellcrit"])	\
+
+		self._totalStats.Set("spellcrit",
+			(self._totalStats.Get("intellect") / self._baseStats["intToSpellcrit"]) +					\
+			self._baseStats["spellcrit"] + 																\
+			(self._totalStats.Get("spellcritRating") / self._baseStats["spellcritRatingToSpellcrit"])	\
 			)
 
-		self._gemStats.Set(key,
-			(self._gemStats.Get("intellect") / self._baseStats["intToSpellcrit"]) +		\
-			(self._gemStats.Get(key) / self._baseStats["spellcritRatingToSpellcrit"])	\
+		'''# TODO might need to add _totalStatsGems
+		print self._gemStats.Get("spellcrit")
+		self._gemStats.Set("spellcrit",
+			(self._gemStats.Get("intellect") / self._baseStats["intToSpellcrit"]) +						\
+			(self._gemStats.Get("spellcritRating") / self._baseStats["spellcritRatingToSpellcrit"])		\
 			)
+		print self._gemStats.Get("spellcrit")
+		'''
+
 
 	def Get(self, key):
 		if key not in self._baseStats:

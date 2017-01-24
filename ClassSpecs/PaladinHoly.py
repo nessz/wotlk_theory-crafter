@@ -20,99 +20,79 @@ class PaladinHoly(Character):
 		# head 7, shoulders 4
 		self._enchantStats.Set("mp5", 11)
 		
-		'''
-		self.UpdateTotalIntellect()
-		self.UpdateTotalMana()
-		self.UpdateTotalCrit()
-		self.UpdateHealingBonus()
-		'''
-
 
 	def UpdateTotalIntellect(self):
-		Character.UpdateTotalIntellect(self)
 		key = "intellect"
-		self._totalStats.Set(key, self._totalStats.Get(key) * self._divineIntellect)
+		# update intellect before applying talent multiplier
+		self.UpdateTotalStat("intellect")
+		self._totalStats.Set(key, self._totalStats.Get(key) * (1 + self._divineIntellect))
 
 	def UpdateTotalHealingBonus(self):
-		Character.UpdateTotalHealingBonus(self)
 		key = "hb"
+		# update hb before applying talent multiplier
+		self.UpdateTotalStat("hb")
 		self._totalStats.Set(key, self._totalStats.Get(key) 					\
 			+ (self._totalStats.Get("intellect") * self._divineGuidance))
 
-	def ManaFromInt(self):
-		return (20 + (15 * (self._totalIntellect - 20)))
+	def UpdateTotalStats(self):
+		# this is overriding UpdateTotalStats from base
+		Character.UpdateTotalStats(self)
+		self.UpdateTotalIntellect()
+		self.UpdateTotalHealingBonus()
 
-	def CritFromInt(self):
-		return (self._totalIntellect / 80.05)
+		# since intellect, update the affected stats as well
+		self.UpdateTotalMana()
+		self.UpdateTotalSpellCrit()
+
+
+	def ManaFromInt(self):
+		return (20 + (15 * (self._totalStats.Get("intellect") - 20)))
+
+	def SpellCritFromInt(self):
+		return (self._totalStats.Get("intellect") / self._baseStats["intToSpellcrit"])
 
 	def HealingBonusFromInt(self):
-		return (self._totalIntellect * self._divineGuidance)
+		return (self._totalStats.Get("intellect") * self._divineGuidance)
 
 
 	def ManaFromIntGems(self):
-		return (20 + (15 * ((self._int_FromGems * (1 + self._divineIntellect)) - 20)))
+		return (20 + (15 * ((self._gemStats.Get("intellect") * (1 + self._divineIntellect)) - 20)))
 
-	def CritFromIntGems(self):
-		return ((self._int_FromGems * (1 + self._divineIntellect)) / 80.05)
+	def SpellCritFromIntGems(self):
+		return ((self._gemStats.Get("intellect") * (1 + self._divineIntellect)) / self._baseStats["intToSpellcrit"])
 
 	def HealingBonusFromIntGems(self):
-		return ((self._int_FromGems * (1 + self._divineIntellect)) * self._divineGuidance)
+		return ((self._gemStats.Get("intellect") * (1 + self._divineIntellect)) * self._divineGuidance)
 
-	'''
-	def UpdateStatsFromItems(self, hb_items, int_items, crit_items, mp5_items, haste_items):
-		self._hb_FromItems = hb_items
-		self._int_FromItems = int_items
-		self._critRating_FromItems = crit_items
-		self._mp5_FromItems = mp5_items
-		self._haste_FromItems = haste_items
-
-		self.UpdateTotalIntellect()
-		self.UpdateTotalMana()
-		self.UpdateTotalCrit()
-		self.UpdateHealingBonus()
-
-	def UpdateStatsFromGems(self, hb_gems, int_gems, crit_gems, mp5_gems, haste_gems):
-		self._hb_FromGems = hb_gems
-		self._int_FromGems = int_gems
-		self._critRating_FromGems = crit_gems
-		self._mp5_FromGems = mp5_gems
-		self._haste_FromGems = haste_gems
-
-		self.UpdateTotalIntellect()
-		self.UpdateTotalMana()
-		self.UpdateTotalCrit()
-		self.UpdateHealingBonus()
-	'''
 
 	def ToString(self):
 		string =  "__TOTAL__" + "\n"
-		string += "Healing Bonus         " + str(self._totalStats.Get("hb")) + "\n"
-		string += "Base Int              " + str(self._baseStats["intellect"]) + "\n"
-		string += "Base Mana             " + str(self._baseStats["mana"]) + "\n"
-		string += "Total Int             " + str(self._totalStats.Get("intellect")) + "\n"
-		string += "Total Mana            " + str(self._totalStats.Get("mana")) + "\n"
-		#string += "Crit Rating           " + str(self.) + "\n"
-		string += "Total Crit            " + str(self._totalStats.Get("spellcrit")) + "\n"
-		string += "Mp5                   " + str(self._totalStats.Get("mp5")) + "\n"
-		string += "Haste                 " + str(self._totalStats.Get("haste")) + "\n\n"
+		string += "{:<30}".format("Healing Bonus") 			+ str(self._totalStats.Get("hb")) + "\n"
+		string += "{:<30}".format("Base Int") 				+ str(self._baseStats["intellect"]) + "\n"
+		string += "{:<30}".format("Base Mana") 				+ str(self._baseStats["mana"]) + "\n"
+		string += "{:<30}".format("Total Int")				+ str(self._totalStats.Get("intellect")) + "\n"
+		string += "{:<30}".format("Total Mana") 			+ str(self._totalStats.Get("mana")) + "\n"
+		string += "{:<30}".format("Spell-Crit Rating") 		+ str(self._totalStats.Get("spellcritRating")) + "\n"
+		string += "{:<30}".format("Total Spell-Crit") 		+ str(self._totalStats.Get("spellcrit")) + "\n"
+		string += "{:<30}".format("Mp5") 					+ str(self._totalStats.Get("mp5")) + "\n"
+		string += "{:<30}".format("Haste") 					+ str(self._totalStats.Get("haste")) + "\n\n"
 
 		string += "__GEMS__" + "\n"
-		string += "Gems Healing Bonus    " + str(self._gemStats.Get("hb")) + "\n"
-		#string += "Gems Crit Rating      " + str(self._critRating_FromGems) + "\n"
-		string += "Gems Crit             " + str(self._gemStats.Get("spellcrit")) + "\n"
-		string += "Gems Mp5              " + str(self._gemStats.Get("mp5")) + "\n"
-		string += "Gems Haste            " + str(self._gemStats.Get("haste")) + "\n"
-		string += "Gems Intellect        " + str(self._gemStats.Get("intellect")) + "\n"
-		string += "Gems Mana from Int    " #+ str(self.ManaFromIntGems()) + "\n"
-		string += "Gems Crit from Int    " + str(self._gemStats.Get("spellcrit")) + "\n"
-		string += "Gems HB from Int      " #+ str(self.HealingBonusFromIntGems()) + "\n"
-		#string += "Gems Total Crit       " + str(self._totalCritGems + self.CritFromIntGems()) + "\n"
-		string += "Gems Total HB         " #+ str(self._hb_FromGems + self.HealingBonusFromIntGems()) + "\n\n"
+		string += "{:<30}".format("Gems Healing Bonus") 	+ str(self._gemStats.Get("hb")) + "\n"
+		string += "{:<30}".format("Gems Spell-Crit Rating") + str(self._gemStats.Get("spellcritRating")) + "\n"
+		string += "{:<30}".format("Gems Spell-Crit") 		+ str(self._gemStats.Get("spellcrit")) + "\n"
+		string += "{:<30}".format("Gems Mp5") 				+ str(self._gemStats.Get("mp5")) + "\n"
+		string += "{:<30}".format("Gems Haste") 			+ str(self._gemStats.Get("haste")) + "\n"
+		string += "{:<30}".format("Gems Intellect") 		+ str(self._gemStats.Get("intellect")) + "\n"
+		string += "{:<30}".format("Gems Mana from Int") 	+ str(self.ManaFromIntGems()) + "\n"
+		string += "{:<30}".format("Gems Crit from Int") 	+ str(self.SpellCritFromIntGems()) + "\n"
+		string += "{:<30}".format("Gems HB from Int") 		+ str(self.HealingBonusFromIntGems()) + "\n"
+		string += "{:<30}".format("Gems Total HB") 			+ str(self._gemStats.Get("hb") + self.HealingBonusFromIntGems()) + "\n\n"
 
 		string += "__INT__" + "\n"
-		string += "Mana from Total Int   " #+ str(self.ManaFromInt()) + "\n"
-		string += "Crit from Total Int   " #+ str(self.CritFromInt()) + "\n"
-		string += "HB from Total Int     " #+ str(self.HealingBonusFromInt()) + "\n\n"
+		string += "{:<30}".format("Mana from Total Int") 	+ str(self.ManaFromInt()) + "\n"
+		string += "{:<30}".format("Crit from Total Int") 	+ str(self.SpellCritFromInt()) + "\n"
+		string += "{:<30}".format("HB from Total Int") 		+ str(self.HealingBonusFromInt()) + "\n\n"
 
 		string += "\nNote:\n- Socket Boni are NOT considered!\n- Enchants are considered (your Rings are enchanted).\n- You have Insightful Earthstorm Diamond (+12 Int).\n- You are wearing a shield (+10 Int).\n- You are Aldor (shoulder enchant)."
 
