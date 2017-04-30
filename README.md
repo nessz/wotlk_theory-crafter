@@ -1,7 +1,7 @@
-TBC TheoryCrafter
+WOTLK TheoryCrafter
 =================
 
-This is a simple TheoryCrafter program, which helps helps on deciding on the best upgrade for yourself. Not all TBC specs are supported at the moment. By browsing through the files you can easily see which actually are supported currently.
+This is a simple TheoryCrafter program, which helps helps on deciding on the best upgrade for yourself. Not all specs are supported at the moment. By browsing through the files you can easily see which actually are supported currently.
 
 #### Setup
 
